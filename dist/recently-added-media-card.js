@@ -1044,13 +1044,7 @@ class RecentlyAddedMediaCard extends HTMLElement {
   // ── Interleave utility ────────────────────────────────────────────────────────
 
   _interleave(movies, tvShows) {
-    const result = [];
-    const maxLen = Math.max(movies.length, tvShows.length);
-    for (let i = 0; i < maxLen; i++) {
-      if (i < movies.length) result.push(movies[i]);
-      if (i < tvShows.length) result.push(tvShows[i]);
-    }
-    return result;
+    return [...movies, ...tvShows].sort((a, b) => b.addedAt - a.addedAt);
   }
 
   // ── Cycling ───────────────────────────────────────────────────────────────────
